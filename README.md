@@ -39,5 +39,5 @@ Unlike simple LLM wrappers, Peerspective follows a multi-step autonomous logic:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/peerspective.git
+   git clone https://github.com/kkauffmannf/peerspective
    cd peerspective
