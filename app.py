@@ -2,16 +2,14 @@ import streamlit as st
 from google import genai
 from google.genai import types
 import os
-from dotenv import load_dotenv
 import base64
 import time
 
 # --- 1. CONFIGURATION ---
-load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
-
-if not api_key:
-    st.error("❌ Missing Google API Key. Please create a .env file.")
+try:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+except (KeyError, FileNotFoundError):
+    st.error("❌ Missing Google API Key. Please add GOOGLE_API_KEY to Streamlit secrets.")
     st.stop()
 
 client = genai.Client(api_key=api_key)
