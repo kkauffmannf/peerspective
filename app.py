@@ -1,9 +1,8 @@
 import streamlit as st
 from google import genai
 from google.genai import types
-import os
 import base64
-import time
+from streamlit_pdf_viewer import pdf_viewer
 
 # --- 1. CONFIGURATION ---
 try:
@@ -24,14 +23,14 @@ st.markdown("""
     <style>
         /* PDF Container - Fixed height for workstation feel */
         .pdf-container { 
-            height: 85vh; 
+            height: 90vh; 
             width: 100%; 
-            overflow: hidden; 
+            overflow: auto; 
             border: 1px solid #ddd; 
             border-radius: 8px; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        iframe { width: 100%; height: 100%; border: none; }
+        .pdf-container iframe { width: 100%; height: 100%; border: none; }
         
         /* Agent Status Bar - Professional styling */
         .stStatus { border-left: 4px solid #4285F4 !important; background-color: #f8f9fa; }
@@ -239,7 +238,7 @@ with col_agent:
 
 # === RIGHT COLUMN: PDF ===
 with col_pdf:
-    display_pdf(uploaded_file.getvalue())
+    pdf_viewer(uploaded_file.getvalue(), height=1000)
 
 # --- Attribution ---
 st.markdown("---")
